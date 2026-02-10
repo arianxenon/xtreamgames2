@@ -53,6 +53,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
         
         .logo {
@@ -283,27 +285,6 @@
             border-left-color: #ff3333;
         }
         
-        /* YouTube Videos Button */
-        .youtube-btn {
-            background-color: #ff0000;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
-        }
-        
-        .youtube-btn:hover {
-            background-color: #ff3333;
-            transform: translateY(-2px);
-        }
-        
         /* Login Modal */
         .login-modal {
             display: none;
@@ -493,6 +474,43 @@
             padding: 30px 0;
         }
         
+        /* Tabs Navigation */
+        .tabs-navigation {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #2a3552;
+        }
+        
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 15px 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .tab-btn:hover {
+            color: var(--accent-light-blue);
+        }
+        
+        .tab-btn.active {
+            color: var(--accent-light-blue);
+        }
+        
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent-blue);
+        }
+        
         /* Games Grid */
         .games-section {
             flex: 1;
@@ -635,6 +653,81 @@
         
         .share-game-btn:hover {
             background-color: #25D366;
+        }
+        
+        /* Videos Grid */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .video-card {
+            background-color: var(--card-bg);
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 10px 20px var(--shadow-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.9);
+        }
+        
+        .video-thumbnail-container {
+            width: 100%;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .video-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 0, 0, 0.8);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .video-card:hover .video-play-btn {
+            background-color: #ff0000;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        .video-info {
+            padding: 20px;
+        }
+        
+        .video-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .video-date {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
         
         /* Sidebar */
@@ -838,64 +931,7 @@
             background-color: #666;
         }
         
-        /* YouTube Videos Section */
-        .youtube-section {
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 2px solid #ff0000;
-            display: none;
-        }
-        
-        .youtube-section.active {
-            display: block;
-        }
-        
-        .youtube-videos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .youtube-video-card {
-            background-color: var(--card-bg);
-            border-radius: 0;
-            overflow: hidden;
-            box-shadow: 0 10px 20px var(--shadow-color);
-            transition: transform 0.3s;
-            border: 2px solid #ff0000;
-        }
-        
-        .youtube-video-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .youtube-thumbnail {
-            width: 100%;
-            height: 225px;
-            object-fit: cover;
-            cursor: pointer;
-            background-color: #000;
-        }
-        
-        .youtube-video-info {
-            padding: 20px;
-        }
-        
-        .youtube-video-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--text-primary);
-        }
-        
-        .youtube-video-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        /* YouTube Modal */
+        /* YouTube Videos Modal */
         .youtube-modal {
             display: none;
             position: fixed;
@@ -903,8 +939,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            z-index: 4000;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 4001;
             justify-content: center;
             align-items: center;
         }
@@ -928,64 +964,127 @@
             border-bottom: 2px solid #ff0000;
         }
         
+        .youtube-modal-title {
+            font-size: 1.5rem;
+            color: #ff0000;
+        }
+        
+        .close-youtube-modal {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-youtube-modal:hover {
+            color: #ff0000;
+        }
+        
         .youtube-modal-body {
             padding: 30px;
-            max-height: 80vh;
+            max-height: 70vh;
             overflow-y: auto;
         }
         
-        .youtube-form-group {
-            margin-bottom: 20px;
+        .youtube-videos-list {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 20px;
+            border: 1px solid #2a3552;
+            padding: 10px;
         }
         
-        .youtube-url-list {
+        .youtube-video-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-bottom: 1px solid #2a3552;
+            background-color: rgba(19, 26, 45, 0.5);
+        }
+        
+        .youtube-video-item:last-child {
+            border-bottom: none;
+        }
+        
+        .youtube-video-thumb {
+            width: 120px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .youtube-video-info {
+            flex: 1;
+        }
+        
+        .youtube-video-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .youtube-video-id {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Cloud Links Modal */
+        .cloud-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 4002;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .cloud-modal-content {
+            background-color: var(--secondary-dark);
+            width: 90%;
+            max-width: 700px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            border: 2px solid #2196F3;
+        }
+        
+        .cloud-modal-header {
+            background-color: var(--card-bg);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #2196F3;
+        }
+        
+        .cloud-modal-body {
+            padding: 30px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        
+        .cloud-links-list {
             max-height: 300px;
             overflow-y: auto;
             margin-top: 20px;
             border: 1px solid #2a3552;
-            padding: 15px;
-        }
-        
-        .youtube-url-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             padding: 10px;
+        }
+        
+        .cloud-link-item {
+            padding: 15px;
+            border-bottom: 1px solid #2a3552;
             background-color: rgba(19, 26, 45, 0.5);
-            margin-bottom: 10px;
-            border-left: 3px solid #ff0000;
         }
         
-        /* Page Navigation */
-        .page-navigation {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-            padding-bottom: 30px;
-        }
-        
-        .page-btn {
-            background-color: var(--accent-blue);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s;
-        }
-        
-        .page-btn.active {
-            background-color: #ff0000;
-        }
-        
-        .page-btn:hover {
-            transform: translateY(-2px);
+        .cloud-link-item:last-child {
+            border-bottom: none;
         }
         
         /* Share Modal */
@@ -1494,11 +1593,7 @@
                 gap: 20px;
             }
             
-            .games-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .youtube-videos-grid {
+            .games-grid, .videos-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -1520,7 +1615,7 @@
                 width: 100%;
             }
             
-            .share-btn, .add-game-btn, .youtube-btn {
+            .share-btn, .add-game-btn {
                 width: 100%;
                 justify-content: center;
             }
@@ -1534,12 +1629,18 @@
                 justify-content: center;
             }
             
-            .page-navigation {
+            .music-player-container {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .tabs-navigation {
                 flex-direction: column;
             }
             
-            .page-btn {
+            .tab-btn {
                 width: 100%;
+                text-align: center;
             }
         }
     </style>
@@ -1580,6 +1681,51 @@
         </div>
     </div>
     
+    <!-- YouTube Videos Management Modal -->
+    <div class="youtube-modal" id="youtubeModal">
+        <div class="youtube-modal-content">
+            <div class="youtube-modal-header">
+                <h3 class="youtube-modal-title"><i class="fab fa-youtube"></i> YouTube Videos Management</h3>
+                <button class="close-youtube-modal" id="closeYoutubeModal">&times;</button>
+            </div>
+            <div class="youtube-modal-body">
+                <div class="form-group">
+                    <label for="youtubeUrl"><i class="fas fa-link"></i> YouTube Video URL</label>
+                    <input type="text" id="youtubeUrl" placeholder="https://www.youtube.com/watch?v=VIDEO_ID" class="login-input">
+                </div>
+                <div class="form-group">
+                    <label for="youtubeTitle"><i class="fas fa-heading"></i> Video Title (Optional)</label>
+                    <input type="text" id="youtubeTitle" placeholder="Enter custom title" class="login-input">
+                </div>
+                <button class="export-btn" id="addYoutubeVideoBtn" style="background-color: #ff0000;">
+                    <i class="fas fa-plus"></i> Add YouTube Video
+                </button>
+                
+                <div class="youtube-videos-list" id="youtubeVideosList">
+                    <!-- YouTube videos will be listed here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Cloud Links Management Modal -->
+    <div class="cloud-modal" id="cloudModal">
+        <div class="cloud-modal-content">
+            <div class="cloud-modal-header">
+                <h3 class="share-modal-title"><i class="fas fa-cloud"></i> Cloud Links Management</h3>
+                <button class="close-share-modal" id="closeCloudModal">&times;</button>
+            </div>
+            <div class="cloud-modal-body">
+                <div class="cloud-links-list" id="cloudLinksList">
+                    <!-- Cloud links will be listed here -->
+                </div>
+                <button class="export-btn" id="closeCloudModalBtn" style="background-color: #2196F3; margin-top: 20px;">
+                    <i class="fas fa-times"></i> Close
+                </button>
+            </div>
+        </div>
+    </div>
+    
     <!-- Music Player -->
     <audio id="background-music" loop></audio>
     
@@ -1594,7 +1740,7 @@
                 
                 <!-- Search Bar -->
                 <div class="search-container">
-                    <input type="text" class="search-input" id="searchInput" placeholder="Search games...">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search...">
                     <button class="search-btn" id="searchBtn">
                         <i class="fas fa-search"></i>
                     </button>
@@ -1602,8 +1748,8 @@
                 
                 <!-- Admin Section -->
                 <div class="admin-section">
-                    <!-- YouTube Videos Button (shown when logged in) -->
-                    <button class="youtube-btn" id="youtubeBtn" style="display: none;">
+                    <!-- YouTube Videos Button (Admin only) -->
+                    <button class="admin-btn" id="youtubeVideosBtn" style="background-color: #ff0000; display: none;">
                         <i class="fab fa-youtube"></i> YouTube Videos
                     </button>
                     
@@ -1659,6 +1805,16 @@
     
     <!-- Main Content -->
     <div class="container">
+        <!-- Tabs Navigation -->
+        <div class="tabs-navigation">
+            <button class="tab-btn active" id="gamesTabBtn">
+                <i class="fas fa-gamepad"></i> Games
+            </button>
+            <button class="tab-btn" id="videosTabBtn">
+                <i class="fab fa-youtube"></i> Videos
+            </button>
+        </div>
+        
         <!-- Search Results Info -->
         <div class="search-results-info" id="searchResultsInfo">
             <div style="display: flex; align-items: center; gap: 10px;">
@@ -1673,174 +1829,133 @@
             </button>
         </div>
         
-        <!-- Page Navigation -->
-        <div class="page-navigation">
-            <button class="page-btn active" id="gamesPageBtn">
-                <i class="fas fa-gamepad"></i> Games
-            </button>
-            <button class="page-btn" id="youtubePageBtn">
-                <i class="fab fa-youtube"></i> YouTube Videos
-            </button>
-        </div>
-        
-        <!-- Games Page -->
-        <div id="gamesPage" class="main-content">
-            <!-- Games Section -->
-            <section class="games-section">
-                <div class="games-header">
-                    <h2 id="gamesHeader">Game Collection</h2>
-                    <div class="header-actions">
-                        <button class="share-btn" id="shareSiteBtn">
-                            <i class="fas fa-share-alt"></i> Share Site
-                        </button>
-                        <button class="add-game-btn" id="addNewGame">
-                            <i class="fas fa-plus"></i> Add New Game
-                        </button>
-                        <button class="add-game-btn" id="dbManagerBtn" style="background-color: #9C27B0;">
-                            <i class="fas fa-database"></i> Database
-                        </button>
+        <!-- Games Tab Content -->
+        <div id="gamesTabContent">
+            <div class="main-content">
+                <!-- Games Section -->
+                <section class="games-section">
+                    <div class="games-header">
+                        <h2 id="gamesHeader">Game Collection</h2>
+                        <div class="header-actions">
+                            <button class="share-btn" id="shareSiteBtn">
+                                <i class="fas fa-share-alt"></i> Share Site
+                            </button>
+                            <button class="add-game-btn" id="addNewGame">
+                                <i class="fas fa-plus"></i> Add New Game
+                            </button>
+                            <button class="add-game-btn" id="dbManagerBtn" style="background-color: #9C27B0;">
+                                <i class="fas fa-database"></i> Database
+                            </button>
+                        </div>
                     </div>
-                </div>
+                    
+                    <div class="games-grid" id="gamesGrid">
+                        <!-- Games will be loaded here -->
+                    </div>
+                    
+                    <div class="empty-state" id="emptyStateGames">
+                        <i class="fas fa-gamepad"></i>
+                        <h3>No Games Found</h3>
+                        <p>Try adding some games or clear your search</p>
+                    </div>
+                </section>
                 
-                <div class="games-grid" id="gamesGrid">
-                    <!-- Games will be loaded here -->
-                </div>
-                
-                <div class="empty-state" id="emptyState">
-                    <i class="fas fa-gamepad"></i>
-                    <h3>No Games Found</h3>
-                    <p>Try adding some games or clear your search</p>
-                </div>
-            </section>
-            
-            <!-- Sidebar Form -->
-            <aside class="sidebar" id="adminSidebar" style="display: none;">
-                <h3 id="formTitle">Add New Game</h3>
-                
-                <form id="gameForm">
-                    <input type="hidden" id="gameId">
+                <!-- Sidebar Form -->
+                <aside class="sidebar" id="adminSidebar" style="display: none;">
+                    <h3 id="formTitle">Add New Game</h3>
                     
-                    <div class="form-group">
-                        <label for="gameName">Game Title</label>
-                        <input type="text" id="gameName" placeholder="Enter game title" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="mainImage">Main Cover Image (1080x1920)</label>
-                        <input type="text" id="mainImage" placeholder="Enter image URL" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="gameDescription">Game Description</label>
-                        <textarea id="gameDescription" placeholder="Enter game description"></textarea>
-                    </div>
-                    
-                    <!-- Music Management Section -->
-                    <div class="music-management">
-                        <h4>Background Music</h4>
+                    <form id="gameForm">
+                        <input type="hidden" id="gameId">
+                        
                         <div class="form-group">
-                            <label for="musicUrl">Add Music URL (MP3)</label>
-                            <input type="text" id="musicUrl" placeholder="Enter music URL">
-                            <button type="button" class="add-btn" id="addMusicUrlBtn">
-                                <i class="fas fa-plus"></i> Add to Playlist
+                            <label for="gameName">Game Title</label>
+                            <input type="text" id="gameName" placeholder="Enter game title" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mainImage">Main Cover Image (1080x1920)</label>
+                            <input type="text" id="mainImage" placeholder="Enter image URL" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="gameDescription">Game Description</label>
+                            <textarea id="gameDescription" placeholder="Enter game description"></textarea>
+                        </div>
+                        
+                        <!-- Music Management Section -->
+                        <div class="music-management">
+                            <h4>Background Music</h4>
+                            <div class="form-group">
+                                <label for="musicUrl">Add Music URL (MP3)</label>
+                                <input type="text" id="musicUrl" placeholder="Enter music URL">
+                                <button type="button" class="add-btn" id="addMusicUrlBtn">
+                                    <i class="fas fa-plus"></i> Add to Playlist
+                                </button>
+                            </div>
+                            
+                            <div class="music-list" id="musicList">
+                                <!-- Music items will be loaded here -->
+                            </div>
+                        </div>
+                        
+                        <!-- Media Section -->
+                        <div class="media-section">
+                            <h4>Game Media (Images & Videos)</h4>
+                            <div class="form-group">
+                                <label for="mediaUrl">Add Media URL (Image or YouTube)</label>
+                                <input type="text" id="mediaUrl" placeholder="Enter image or YouTube URL">
+                                <button type="button" class="add-btn" id="addMediaBtn">
+                                    <i class="fas fa-plus"></i> Add Media
+                                </button>
+                            </div>
+                            <div class="media-preview" id="mediaPreview">
+                                <!-- Media previews will appear here -->
+                            </div>
+                        </div>
+                        
+                        <!-- Download Links -->
+                        <div class="download-links">
+                            <h4>Download Links</h4>
+                            <div id="downloadLinks">
+                                <!-- Download links will be added here -->
+                            </div>
+                            <button type="button" class="add-btn" id="addLinkBtn">
+                                <i class="fas fa-plus"></i> Add Download Link
                             </button>
                         </div>
                         
-                        <div class="music-list" id="musicList">
-                            <!-- Music items will be loaded here -->
-                        </div>
-                    </div>
-                    
-                    <!-- Media Section -->
-                    <div class="media-section">
-                        <h4>Game Media (Images & Videos)</h4>
-                        <div class="form-group">
-                            <label for="mediaUrl">Add Media URL (Image or YouTube)</label>
-                            <input type="text" id="mediaUrl" placeholder="Enter image or YouTube URL">
-                            <button type="button" class="add-btn" id="addMediaBtn">
-                                <i class="fas fa-plus"></i> Add Media
+                        <div class="form-actions">
+                            <button type="submit" class="save-btn" id="saveBtn">
+                                <i class="fas fa-save"></i> Save Game
+                            </button>
+                            <button type="button" class="cancel-btn" id="cancelBtn">
+                                <i class="fas fa-times"></i> Cancel
                             </button>
                         </div>
-                        <div class="media-preview" id="mediaPreview">
-                            <!-- Media previews will appear here -->
-                        </div>
-                    </div>
-                    
-                    <!-- Download Links -->
-                    <div class="download-links">
-                        <h4>Download Links</h4>
-                        <div id="downloadLinks">
-                            <!-- Download links will be added here -->
-                        </div>
-                        <button type="button" class="add-btn" id="addLinkBtn">
-                            <i class="fas fa-plus"></i> Add Download Link
-                        </button>
-                    </div>
-                    
-                    <div class="form-actions">
-                        <button type="submit" class="save-btn" id="saveBtn">
-                            <i class="fas fa-save"></i> Save Game
-                        </button>
-                        <button type="button" class="cancel-btn" id="cancelBtn">
-                            <i class="fas fa-times"></i> Cancel
-                        </button>
-                    </div>
-                </form>
-            </aside>
+                    </form>
+                </aside>
+            </div>
         </div>
         
-        <!-- YouTube Videos Page -->
-        <div id="youtubePage" class="youtube-section">
+        <!-- Videos Tab Content -->
+        <div id="videosTabContent" style="display: none;">
             <div class="games-header">
-                <h2 style="color: #ff0000;">
-                    <i class="fab fa-youtube"></i> YouTube Videos
-                </h2>
+                <h2>YouTube Videos Collection</h2>
                 <div class="header-actions">
-                    <button class="share-btn" id="shareYoutubeBtn">
-                        <i class="fas fa-share-alt"></i> Share Videos
+                    <button class="share-btn" id="manageCloudLinksBtn" style="background-color: #2196F3;">
+                        <i class="fas fa-cloud"></i> Manage Cloud Links
                     </button>
                 </div>
             </div>
             
-            <div class="youtube-videos-grid" id="youtubeVideosGrid">
+            <div class="videos-grid" id="videosGrid">
                 <!-- YouTube videos will be loaded here -->
             </div>
             
-            <div class="empty-state" id="youtubeEmptyState">
+            <div class="empty-state" id="emptyStateVideos">
                 <i class="fab fa-youtube"></i>
-                <h3>No YouTube Videos Added</h3>
-                <p>Login as admin to add YouTube videos</p>
-            </div>
-        </div>
-    </div>
-    
-    <!-- YouTube Management Modal -->
-    <div class="youtube-modal" id="youtubeModal">
-        <div class="youtube-modal-content">
-            <div class="youtube-modal-header">
-                <h3 class="share-modal-title">
-                    <i class="fab fa-youtube"></i> Manage YouTube Videos
-                </h3>
-                <button class="close-share-modal" id="closeYoutubeModal">&times;</button>
-            </div>
-            <div class="youtube-modal-body">
-                <div class="youtube-form-group">
-                    <label for="youtubeUrl"><i class="fas fa-link"></i> YouTube URL</label>
-                    <input type="text" id="youtubeUrl" class="login-input" placeholder="Paste YouTube URL here (e.g., https://www.youtube.com/watch?v=VIDEO_ID)">
-                </div>
-                
-                <div class="youtube-form-group">
-                    <label for="youtubeTitle"><i class="fas fa-heading"></i> Video Title (Optional)</label>
-                    <input type="text" id="youtubeTitle" class="login-input" placeholder="Enter custom title for the video">
-                </div>
-                
-                <button class="export-btn" id="addYoutubeVideoBtn" style="background-color: #ff0000;">
-                    <i class="fas fa-plus"></i> Add YouTube Video
-                </button>
-                
-                <div class="youtube-url-list" id="youtubeUrlList">
-                    <!-- YouTube videos list will appear here -->
-                </div>
+                <h3>No YouTube Videos Found</h3>
+                <p>Admin can add YouTube videos using the YouTube Videos button in header</p>
             </div>
         </div>
     </div>
@@ -1884,6 +1999,10 @@
                         <i class="fas fa-qrcode share-icon share-qr"></i>
                         <span>QR Code</span>
                     </div>
+                    <div class="share-option" id="shareDirect">
+                        <i class="fas fa-external-link-alt share-icon" style="color: #FF9800;"></i>
+                        <span>Direct Link</span>
+                    </div>
                 </div>
                 
                 <div class="url-container">
@@ -1896,26 +2015,86 @@
                     <div class="qr-code" id="qrCode"></div>
                 </div>
                 
-                <!-- Import/Export Section -->
+                <!-- Smart Game Sharing Section -->
                 <div class="export-options" style="margin-top: 30px;">
-                    <h4>Import/Export Data:</h4>
-                    <button class="export-btn" id="exportGamesBtn">
-                        <i class="fas fa-file-export"></i> Export All Data (JSON)
-                    </button>
-                    <button class="export-btn export-json" id="importGamesBtn">
-                        <i class="fas fa-file-import"></i> Import Data
-                    </button>
-                    <input type="file" id="importFile" accept=".json" style="display: none;">
+                    <h4>Smart Game Sharing:</h4>
+                    <p style="color: var(--text-secondary); margin: 10px 0; font-size: 0.9rem;">
+                        Create a smart link that includes your game collection. Perfect for sharing with friends!
+                    </p>
                     
-                    <div style="margin-top: 20px; padding: 15px; background-color: var(--card-bg); border-radius: 8px;">
-                        <h4>How to Share:</h4>
-                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                            1. Export your data as JSON file<br>
-                            2. Send the file to your friends<br>
-                            3. They can import it using the Import button<br>
-                            4. All games and videos will be shared!
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 8px; color: var(--text-secondary);">
+                            <i class="fas fa-cog"></i> Compression Level:
+                        </label>
+                        <select id="compressionLevel" style="width: 100%; padding: 10px; background-color: var(--card-bg); color: white; border: 2px solid #2a3552; border-radius: 8px;">
+                            <option value="light">Light (Fastest, larger link)</option>
+                            <option value="medium" selected>Medium (Balanced)</option>
+                            <option value="high">High (Smallest link, slower)</option>
+                        </select>
+                    </div>
+                    
+                    <button class="export-btn" id="generateSmartLinkBtn" style="background-color: #FF9800;">
+                        <i class="fas fa-bolt"></i> Generate Smart Link
+                    </button>
+                    
+                    <button class="export-btn" id="generateCloudLinkBtn" style="background-color: #2196F3; margin-top: 10px;">
+                        <i class="fas fa-cloud"></i> Create Cloud Share Link
+                    </button>
+                    
+                    <div id="smartLinkContainer" style="display: none; margin-top: 20px;">
+                        <h4>Your Smart Link:</h4>
+                        <div class="url-container">
+                            <input type="text" readonly class="url-input" id="smartLinkInput" value="">
+                            <button class="copy-btn" id="copySmartLinkBtn">Copy</button>
+                        </div>
+                        
+                        <div style="margin-top: 10px; display: flex; gap: 10px;">
+                            <button class="copy-btn" id="testSmartLinkBtn" style="background-color: #25D366; padding: 8px 15px;">
+                                <i class="fas fa-play"></i> Test Link
+                            </button>
+                            <button class="copy-btn" id="shortenSmartLinkBtn" style="background-color: #9C27B0; padding: 8px 15px;">
+                                <i class="fas fa-compress"></i> Shorten
+                            </button>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 10px; background-color: var(--card-bg); border-radius: 8px;">
+                            <p style="color: var(--text-secondary); font-size: 0.85rem; margin: 5px 0;">
+                                <i class="fas fa-info-circle" style="color: #3399ff;"></i>
+                                Share this link - recipients will see all your games instantly!
+                            </p>
+                            <div id="linkStats" style="font-size: 0.8rem; color: #b0b8d0; margin-top: 5px;">
+                                <!-- Stats will appear here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="cloudLinkInfo" style="display: none; margin-top: 15px; padding: 10px; background-color: rgba(33, 150, 243, 0.1); border-radius: 8px; border-left: 4px solid #2196F3;">
+                        <p style="color: var(--text-secondary); font-size: 0.85rem;">
+                            <i class="fas fa-cloud-upload-alt" style="color: #2196F3;"></i>
+                            <strong>Cloud Link Created!</strong> Your games are now accessible via a short, shareable link.
                         </p>
                     </div>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background-color: rgba(19, 26, 45, 0.5); border-radius: 8px;">
+                        <h4>How Smart Links Work:</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            1. Games are compressed to create shorter links<br>
+                            2. Recipients see games instantly without import<br>
+                            3. Works even with large collections<br>
+                            4. No login or account required
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="export-options" style="margin-top: 30px;">
+                    <h4>Export Your Data:</h4>
+                    <button class="export-btn" id="exportGamesBtn">
+                        <i class="fas fa-file-export"></i> Export Games Data (JSON)
+                    </button>
+                    <button class="export-btn export-json" id="importGamesBtn">
+                        <i class="fas fa-file-import"></i> Import Games Data
+                    </button>
+                    <input type="file" id="importFile" accept=".json" style="display: none;">
                 </div>
             </div>
         </div>
@@ -1942,8 +2121,8 @@
                     </div>
                     <div class="db-stat-card">
                         <i class="fab fa-youtube fa-2x" style="color: #ff0000;"></i>
-                        <div class="db-stat-value" id="youtubeCount">0</div>
-                        <div>YouTube Videos</div>
+                        <div class="db-stat-value" id="videosCount">0</div>
+                        <div>Videos</div>
                     </div>
                     <div class="db-stat-card">
                         <i class="fas fa-hdd fa-2x" style="color: #FF9800;"></i>
@@ -1965,11 +2144,15 @@
                     </button>
                     <input type="file" id="restoreFile" accept=".json" style="display: none;">
                     
+                    <button class="export-btn export-json" id="syncDbBtn" style="background-color: #4CAF50; margin-top: 20px;">
+                        <i class="fas fa-sync"></i> Sync Across Browsers
+                    </button>
+                    
                     <div style="margin-top: 20px; padding: 15px; background-color: var(--card-bg); border-radius: 8px;">
-                        <h4>Database Information:</h4>
+                        <h4>Sync Information:</h4>
                         <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                            All data is saved in your browser's local storage. 
-                            Backup your data regularly to prevent data loss.
+                            Data is automatically saved in your browser's local storage. 
+                            To sync across different browsers/devices, export and import the backup file.
                         </p>
                     </div>
                 </div>
@@ -2001,7 +2184,7 @@
         const AUTH_CONFIG = {
             USERNAME: 'arianxenon',
             PASSWORD: '2981354361max',
-            STORAGE_KEY: 'xtreamGamesAuth_v2'
+            STORAGE_KEY: 'xtreamGamesAuth_v1'
         };
         
         class AuthSystem {
@@ -2026,6 +2209,7 @@
                             this.isLoggedIn = true;
                             this.user = data.user;
                         } else {
+                            // Session expired
                             this.logout();
                         }
                     } catch (e) {
@@ -2038,7 +2222,7 @@
                 const authData = {
                     isLoggedIn: this.isLoggedIn,
                     user: this.user,
-                    expires: Date.now() + (24 * 60 * 60 * 1000)
+                    expires: Date.now() + (24 * 60 * 60 * 1000) // 24 hours
                 };
                 localStorage.setItem(AUTH_CONFIG.STORAGE_KEY, JSON.stringify(authData));
             }
@@ -2069,6 +2253,7 @@
             }
             
             setupEventListeners() {
+                // Login form
                 document.getElementById('loginForm').addEventListener('submit', (e) => {
                     e.preventDefault();
                     const username = document.getElementById('loginUsername').value;
@@ -2086,14 +2271,17 @@
                     }
                 });
                 
+                // Admin button in header
                 document.getElementById('adminBtn').addEventListener('click', () => {
                     if (this.isAuthenticated()) {
+                        // If already logged in, show user info
                         this.updateUI();
                     } else {
                         this.showLoginModal();
                     }
                 });
                 
+                // Logout button
                 document.getElementById('logoutBtn').addEventListener('click', () => {
                     if (confirm('Are you sure you want to logout?')) {
                         this.logout();
@@ -2102,10 +2290,12 @@
                     }
                 });
                 
+                // Close login modal
                 document.getElementById('closeLoginModal').addEventListener('click', () => {
                     this.hideLoginModal();
                 });
                 
+                // Close modal when clicking outside
                 document.getElementById('loginModal').addEventListener('click', (e) => {
                     if (e.target === document.getElementById('loginModal')) {
                         this.hideLoginModal();
@@ -2135,29 +2325,33 @@
                 const addNewGameBtn = document.getElementById('addNewGame');
                 const userInfo = document.getElementById('userInfo');
                 const adminBtn = document.getElementById('adminBtn');
-                const youtubeBtn = document.getElementById('youtubeBtn');
-                const youtubePageBtn = document.getElementById('youtubePageBtn');
+                const youtubeVideosBtn = document.getElementById('youtubeVideosBtn');
+                const dbManagerBtn = document.getElementById('dbManagerBtn');
                 
                 if (isAuthenticated) {
+                    // Admin mode - show management options
                     adminSidebar.style.display = 'block';
                     addNewGameBtn.style.display = 'flex';
                     userInfo.style.display = 'flex';
                     adminBtn.style.display = 'none';
-                    youtubeBtn.style.display = 'flex';
-                    youtubePageBtn.style.display = 'flex';
+                    youtubeVideosBtn.style.display = 'flex';
+                    dbManagerBtn.style.display = 'flex';
                     
+                    // Update user info
                     document.getElementById('userName').textContent = this.user.name;
                     document.getElementById('userAvatar').textContent = this.user.avatar;
                 } else {
+                    // View mode - hide management options
                     adminSidebar.style.display = 'none';
                     addNewGameBtn.style.display = 'none';
                     userInfo.style.display = 'none';
                     adminBtn.style.display = 'flex';
-                    youtubeBtn.style.display = 'none';
-                    youtubePageBtn.style.display = 'flex';
+                    youtubeVideosBtn.style.display = 'none';
+                    dbManagerBtn.style.display = 'none';
                 }
             }
             
+            // Check access for sensitive operations
             checkAccess() {
                 if (!this.isAuthenticated()) {
                     showToast('Admin access required for this action.', 'error');
@@ -2172,10 +2366,12 @@
         class DatabaseManager {
             constructor() {
                 this.STORAGE_KEYS = {
-                    GAMES: 'xtreamGames_v4',
-                    MUSIC: 'xtreamGamesMusic_v4',
-                    YOUTUBE: 'xtreamGamesYouTube_v4',
-                    SETTINGS: 'xtreamGamesSettings_v4'
+                    GAMES: 'xtreamGames_v3',
+                    MUSIC: 'xtreamGamesMusic_v3',
+                    YOUTUBE_VIDEOS: 'xtreamGamesYouTubeVideos_v1',
+                    SETTINGS: 'xtreamGamesSettings_v3',
+                    BACKUPS: 'xtreamGamesBackups_v3',
+                    CLOUD_LINKS: 'xtreamGamesCloudLinks_v1'
                 };
                 
                 this.initializeDatabase();
@@ -2186,31 +2382,39 @@
                 
                 if (!this.getSettings()) {
                     this.saveSettings({
-                        version: '4.0',
+                        version: '3.0',
                         created: new Date().toISOString(),
-                        lastBackup: null
+                        lastSync: null,
+                        autoBackup: true,
+                        cloudLinks: []
                     });
+                }
+                
+                // Initialize YouTube videos if not exists
+                if (!this.getYouTubeVideos()) {
+                    this.saveYouTubeVideos([]);
+                }
+                
+                // Initialize cloud links if not exists
+                if (!this.getCloudLinks()) {
+                    this.saveCloudLinks([]);
                 }
             }
             
             migrateOldData() {
-                const oldGames = localStorage.getItem('xtreamGames_v3') || localStorage.getItem('xtreamGames_v2') || localStorage.getItem('xtreamGames');
+                // Migrate from v2
+                const oldGames = localStorage.getItem('xtreamGames_v2') || localStorage.getItem('xtreamGames');
                 if (oldGames && !localStorage.getItem(this.STORAGE_KEYS.GAMES)) {
                     localStorage.setItem(this.STORAGE_KEYS.GAMES, oldGames);
                 }
                 
-                const oldMusic = localStorage.getItem('xtreamGamesMusic_v3') || localStorage.getItem('xtreamGamesMusic_v2') || localStorage.getItem('xtreamGamesMusic');
+                const oldMusic = localStorage.getItem('xtreamGamesMusic_v2') || localStorage.getItem('xtreamGamesMusic');
                 if (oldMusic && !localStorage.getItem(this.STORAGE_KEYS.MUSIC)) {
                     localStorage.setItem(this.STORAGE_KEYS.MUSIC, oldMusic);
                 }
-                
-                const oldYouTube = localStorage.getItem('xtreamGamesYouTube_v3');
-                if (oldYouTube && !localStorage.getItem(this.STORAGE_KEYS.YOUTUBE)) {
-                    localStorage.setItem(this.STORAGE_KEYS.YOUTUBE, oldYouTube);
-                }
             }
             
-            // Games operations
+            // Games CRUD operations
             getGames() {
                 const gamesJson = localStorage.getItem(this.STORAGE_KEYS.GAMES);
                 return gamesJson ? JSON.parse(gamesJson) : [];
@@ -2218,7 +2422,7 @@
             
             saveGames(games) {
                 localStorage.setItem(this.STORAGE_KEYS.GAMES, JSON.stringify(games));
-                this.updateSettings();
+                this.updateLastSync();
                 return true;
             }
             
@@ -2256,7 +2460,7 @@
                 return true;
             }
             
-            // Music operations
+            // Music CRUD operations
             getMusicPlaylist() {
                 const musicJson = localStorage.getItem(this.STORAGE_KEYS.MUSIC);
                 return musicJson ? JSON.parse(musicJson) : [];
@@ -2264,26 +2468,26 @@
             
             saveMusicPlaylist(playlist) {
                 localStorage.setItem(this.STORAGE_KEYS.MUSIC, JSON.stringify(playlist));
-                this.updateSettings();
+                this.updateLastSync();
                 return true;
             }
             
-            // YouTube operations
+            // YouTube Videos CRUD operations
             getYouTubeVideos() {
-                const youtubeJson = localStorage.getItem(this.STORAGE_KEYS.YOUTUBE);
-                return youtubeJson ? JSON.parse(youtubeJson) : [];
+                const videosJson = localStorage.getItem(this.STORAGE_KEYS.YOUTUBE_VIDEOS);
+                return videosJson ? JSON.parse(videosJson) : [];
             }
             
             saveYouTubeVideos(videos) {
-                localStorage.setItem(this.STORAGE_KEYS.YOUTUBE, JSON.stringify(videos));
-                this.updateSettings();
+                localStorage.setItem(this.STORAGE_KEYS.YOUTUBE_VIDEOS, JSON.stringify(videos));
+                this.updateLastSync();
                 return true;
             }
             
             addYouTubeVideo(videoData) {
                 const videos = this.getYouTubeVideos();
-                videoData.id = videoData.id || Date.now();
-                videoData.addedAt = new Date().toISOString();
+                videoData.id = videoData.id || 'vid_' + Date.now();
+                videoData.timestamp = new Date().toISOString();
                 videos.push(videoData);
                 this.saveYouTubeVideos(videos);
                 return videoData;
@@ -2293,6 +2497,31 @@
                 const videos = this.getYouTubeVideos();
                 const filteredVideos = videos.filter(video => video.id !== id);
                 this.saveYouTubeVideos(filteredVideos);
+                return true;
+            }
+            
+            // Cloud Links operations
+            getCloudLinks() {
+                const linksJson = localStorage.getItem(this.STORAGE_KEYS.CLOUD_LINKS);
+                return linksJson ? JSON.parse(linksJson) : [];
+            }
+            
+            saveCloudLinks(links) {
+                localStorage.setItem(this.STORAGE_KEYS.CLOUD_LINKS, JSON.stringify(links));
+                return true;
+            }
+            
+            addCloudLink(linkData) {
+                const links = this.getCloudLinks();
+                links.push(linkData);
+                this.saveCloudLinks(links);
+                return linkData;
+            }
+            
+            deleteCloudLink(id) {
+                const links = this.getCloudLinks();
+                const filteredLinks = links.filter(link => link.id !== id);
+                this.saveCloudLinks(filteredLinks);
                 return true;
             }
             
@@ -2307,10 +2536,10 @@
                 return true;
             }
             
-            updateSettings() {
+            updateLastSync() {
                 const settings = this.getSettings();
                 if (settings) {
-                    settings.lastUpdate = new Date().toISOString();
+                    settings.lastSync = new Date().toISOString();
                     this.saveSettings(settings);
                 }
             }
@@ -2319,19 +2548,23 @@
             getStatistics() {
                 const games = this.getGames();
                 const music = this.getMusicPlaylist();
-                const youtube = this.getYouTubeVideos();
+                const videos = this.getYouTubeVideos();
+                const settings = this.getSettings();
                 
                 let totalSize = 0;
                 totalSize += localStorage.getItem(this.STORAGE_KEYS.GAMES)?.length || 0;
                 totalSize += localStorage.getItem(this.STORAGE_KEYS.MUSIC)?.length || 0;
-                totalSize += localStorage.getItem(this.STORAGE_KEYS.YOUTUBE)?.length || 0;
+                totalSize += localStorage.getItem(this.STORAGE_KEYS.YOUTUBE_VIDEOS)?.length || 0;
                 totalSize += localStorage.getItem(this.STORAGE_KEYS.SETTINGS)?.length || 0;
+                totalSize += localStorage.getItem(this.STORAGE_KEYS.BACKUPS)?.length || 0;
+                totalSize += localStorage.getItem(this.STORAGE_KEYS.CLOUD_LINKS)?.length || 0;
                 
                 return {
                     gamesCount: games.length,
                     musicCount: music.length,
-                    youtubeCount: youtube.length,
+                    videosCount: videos.length,
                     dbSize: Math.round(totalSize / 1024),
+                    lastSync: settings?.lastSync || 'Never',
                     totalSize: totalSize
                 };
             }
@@ -2348,59 +2581,271 @@
                 );
             }
             
-            // Backup/Restore
-            createBackup() {
-                const backup = {
-                    version: '4.0',
-                    timestamp: new Date().toISOString(),
-                    games: this.getGames(),
-                    music: this.getMusicPlaylist(),
-                    youtube: this.getYouTubeVideos(),
-                    settings: this.getSettings()
+            // Search YouTube videos
+            searchYouTubeVideos(query) {
+                const videos = this.getYouTubeVideos();
+                if (!query || query.trim() === '') return videos;
+                
+                const searchTerm = query.toLowerCase().trim();
+                return videos.filter(video => 
+                    video.title.toLowerCase().includes(searchTerm) ||
+                    (video.videoId && video.videoId.toLowerCase().includes(searchTerm))
+                );
+            }
+            
+            // YouTube URL parsing
+            parseYouTubeUrl(url) {
+                try {
+                    const urlObj = new URL(url);
+                    let videoId = null;
+                    
+                    if (urlObj.hostname.includes('youtube.com')) {
+                        videoId = urlObj.searchParams.get('v');
+                    } else if (urlObj.hostname.includes('youtu.be')) {
+                        videoId = urlObj.pathname.substring(1);
+                    }
+                    
+                    if (videoId && videoId.length === 11) {
+                        return {
+                            videoId: videoId,
+                            thumbnail: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
+                            embedUrl: `https://www.youtube.com/embed/${videoId}`
+                        };
+                    }
+                } catch (e) {
+                    console.error('Error parsing YouTube URL:', e);
+                }
+                return null;
+            }
+            
+            // Smart Link System
+            compressGamesData(games, level = 'medium') {
+                try {
+                    // Remove unnecessary data to reduce size
+                    const compressedGames = games.map(game => ({
+                        id: game.id,
+                        name: game.name,
+                        mainImage: game.mainImage,
+                        description: game.description ? game.description.substring(0, 200) : '',
+                        media: game.media ? game.media.slice(0, 3) : [],
+                        downloadLinks: game.downloadLinks ? game.downloadLinks.slice(0, 2) : []
+                    }));
+                    
+                    const data = {
+                        v: '3.0',
+                        t: new Date().getTime(),
+                        g: compressedGames,
+                        c: level
+                    };
+                    
+                    // Text compression by removing whitespace
+                    let jsonString = JSON.stringify(data);
+                    
+                    if (level === 'high') {
+                        // Advanced compression
+                        jsonString = jsonString.replace(/\s+/g, '');
+                    }
+                    
+                    // Base64 encoding with URL encoding
+                    const base64String = btoa(encodeURIComponent(jsonString));
+                    
+                    return {
+                        data: base64String,
+                        originalSize: JSON.stringify(games).length,
+                        compressedSize: base64String.length,
+                        ratio: Math.round((base64String.length / JSON.stringify(games).length) * 100) + '%'
+                    };
+                } catch (error) {
+                    console.error('Compression error:', error);
+                    return null;
+                }
+            }
+            
+            // Decompress data
+            decompressGamesData(compressedData) {
+                try {
+                    const jsonString = decodeURIComponent(atob(compressedData));
+                    const data = JSON.parse(jsonString);
+                    
+                    if (!data.g || !Array.isArray(data.g)) {
+                        throw new Error('Invalid compressed data');
+                    }
+                    
+                    // Convert to original format
+                    const games = data.g.map(game => ({
+                        id: game.id || Date.now() + Math.random(),
+                        name: game.name || 'Unnamed Game',
+                        mainImage: game.mainImage || 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1080&h=1920&fit=crop',
+                        description: game.description || '',
+                        media: game.media || [],
+                        downloadLinks: game.downloadLinks || [],
+                        createdAt: new Date().toISOString(),
+                        updatedAt: new Date().toISOString()
+                    }));
+                    
+                    return games;
+                } catch (error) {
+                    console.error('Decompression error:', error);
+                    return null;
+                }
+            }
+            
+            // Create smart link with chunking
+            createSmartLink(compressionLevel = 'medium') {
+                const games = this.getGames();
+                if (games.length === 0) {
+                    return { error: 'No games to share' };
+                }
+                
+                // If too many games, split them
+                const MAX_GAMES_PER_LINK = 10;
+                const chunks = [];
+                
+                for (let i = 0; i < games.length; i += MAX_GAMES_PER_LINK) {
+                    const chunk = games.slice(i, i + MAX_GAMES_PER_LINK);
+                    const compressed = this.compressGamesData(chunk, compressionLevel);
+                    if (compressed) {
+                        chunks.push(compressed.data);
+                    }
+                }
+                
+                const baseUrl = window.location.origin + window.location.pathname;
+                
+                if (chunks.length === 1) {
+                    // Single link
+                    return {
+                        type: 'single',
+                        url: `${baseUrl}?share=${chunks[0]}&v=3`,
+                        size: chunks[0].length,
+                        games: games.length
+                    };
+                } else {
+                    // Multiple links (for large collections)
+                    const links = chunks.map((chunk, index) => 
+                        `${baseUrl}?share=${chunk}&part=${index + 1}&total=${chunks.length}&v=3`
+                    );
+                    
+                    // Save multiple links
+                    const multiLinkId = 'ml_' + Date.now();
+                    localStorage.setItem(`multilink_${multiLinkId}`, JSON.stringify({
+                        links: links,
+                        createdAt: new Date().toISOString(),
+                        gameCount: games.length
+                    }));
+                    
+                    return {
+                        type: 'multi',
+                        url: `${baseUrl}?multilink=${multiLinkId}`,
+                        links: links,
+                        size: chunks.reduce((sum, chunk) => sum + chunk.length, 0),
+                        games: games.length,
+                        parts: chunks.length
+                    };
+                }
+            }
+            
+            // Load from smart link
+            loadFromSmartLink() {
+                try {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    
+                    // Check for multi-link
+                    const multiLinkId = urlParams.get('multilink');
+                    if (multiLinkId) {
+                        const multiLinkData = localStorage.getItem(`multilink_${multiLinkId}`);
+                        if (multiLinkData) {
+                            const data = JSON.parse(multiLinkData);
+                            showToast(`Found multi-link with ${data.gameCount} games in ${data.links.length} parts`);
+                            return { type: 'multi', data: data };
+                        }
+                    }
+                    
+                    // Check for simple link
+                    const shareData = urlParams.get('share');
+                    if (shareData) {
+                        const games = this.decompressGamesData(shareData);
+                        if (games && games.length > 0) {
+                            const part = urlParams.get('part');
+                            const total = urlParams.get('total');
+                            
+                            if (part && total) {
+                                // Part of a multi-link collection
+                                showToast(`Loaded part ${part} of ${total} (${games.length} games)`);
+                                return { type: 'chunk', games: games, part: part, total: total };
+                            } else {
+                                // Complete link
+                                return { type: 'single', games: games };
+                            }
+                        }
+                    }
+                    
+                    return null;
+                } catch (error) {
+                    console.error('Error loading from smart link:', error);
+                    return null;
+                }
+            }
+            
+            // Create cloud link (simulation)
+            createCloudLink() {
+                const games = this.getGames();
+                if (games.length === 0) {
+                    return { error: 'No games to share' };
+                }
+                
+                // Cloud link simulation - in reality should be sent to server
+                const cloudId = 'cloud_' + Math.random().toString(36).substr(2, 9);
+                const shareData = this.compressGamesData(games, 'high');
+                
+                if (!shareData) {
+                    return { error: 'Failed to compress data' };
+                }
+                
+                // Expiration: 7 days
+                const expiresAt = new Date();
+                expiresAt.setDate(expiresAt.getDate() + 7);
+                
+                // Save link info
+                const cloudLinkData = {
+                    id: cloudId,
+                    createdAt: new Date().toISOString(),
+                    expiresAt: expiresAt.toISOString(),
+                    gameCount: games.length,
+                    views: 0,
+                    data: shareData.data
                 };
                 
-                const settings = this.getSettings();
-                settings.lastBackup = new Date().toISOString();
-                this.saveSettings(settings);
+                this.addCloudLink(cloudLinkData);
                 
-                return backup;
+                const baseUrl = window.location.origin + window.location.pathname;
+                return {
+                    url: `${baseUrl}?cloud=${cloudId}`,
+                    id: cloudId,
+                    expires: expiresAt.toLocaleDateString(),
+                    games: games.length
+                };
             }
             
-            restoreBackup(backupData) {
-                if (backupData.games) {
-                    this.saveGames(backupData.games);
-                }
-                if (backupData.music) {
-                    this.saveMusicPlaylist(backupData.music);
-                }
-                if (backupData.youtube) {
-                    this.saveYouTubeVideos(backupData.youtube);
-                }
-                if (backupData.settings) {
-                    this.saveSettings(backupData.settings);
-                }
+            // Clean expired cloud links
+            cleanExpiredCloudLinks() {
+                const links = this.getCloudLinks();
+                const now = new Date();
+                const activeLinks = links.filter(link => new Date(link.expiresAt) > now);
                 
-                return true;
-            }
-            
-            clearAllData() {
-                localStorage.removeItem(this.STORAGE_KEYS.GAMES);
-                localStorage.removeItem(this.STORAGE_KEYS.MUSIC);
-                localStorage.removeItem(this.STORAGE_KEYS.YOUTUBE);
-                localStorage.removeItem(this.STORAGE_KEYS.SETTINGS);
-                
-                this.initializeDatabase();
-                return true;
+                if (activeLinks.length !== links.length) {
+                    this.saveCloudLinks(activeLinks);
+                    return links.length - activeLinks.length;
+                }
+                return 0;
             }
         }
         
         // ==================== APPLICATION CODE ====================
-        const db = new DatabaseManager();
-        const authSystem = new AuthSystem();
-        
         // DOM Elements
         const gamesGrid = document.getElementById('gamesGrid');
-        const emptyState = document.getElementById('emptyState');
+        const videosGrid = document.getElementById('videosGrid');
+        const emptyStateGames = document.getElementById('emptyStateGames');
+        const emptyStateVideos = document.getElementById('emptyStateVideos');
         const gameForm = document.getElementById('gameForm');
         const formTitle = document.getElementById('formTitle');
         const gameIdInput = document.getElementById('gameId');
@@ -2432,33 +2877,41 @@
         const clearSearchBtn = document.getElementById('clearSearchBtn');
         const gamesHeader = document.getElementById('gamesHeader');
         
-        // YouTube Elements
-        const youtubeBtn = document.getElementById('youtubeBtn');
+        // Tabs Elements
+        const gamesTabBtn = document.getElementById('gamesTabBtn');
+        const videosTabBtn = document.getElementById('videosTabBtn');
+        const gamesTabContent = document.getElementById('gamesTabContent');
+        const videosTabContent = document.getElementById('videosTabContent');
+        
+        // YouTube Videos Elements
+        const youtubeVideosBtn = document.getElementById('youtubeVideosBtn');
         const youtubeModal = document.getElementById('youtubeModal');
         const closeYoutubeModal = document.getElementById('closeYoutubeModal');
         const youtubeUrlInput = document.getElementById('youtubeUrl');
         const youtubeTitleInput = document.getElementById('youtubeTitle');
         const addYoutubeVideoBtn = document.getElementById('addYoutubeVideoBtn');
-        const youtubeUrlList = document.getElementById('youtubeUrlList');
-        const youtubeVideosGrid = document.getElementById('youtubeVideosGrid');
-        const youtubeEmptyState = document.getElementById('youtubeEmptyState');
-        const youtubePage = document.getElementById('youtubePage');
-        const gamesPage = document.getElementById('gamesPage');
-        const gamesPageBtn = document.getElementById('gamesPageBtn');
-        const youtubePageBtn = document.getElementById('youtubePageBtn');
-        const shareYoutubeBtn = document.getElementById('shareYoutubeBtn');
+        const youtubeVideosList = document.getElementById('youtubeVideosList');
         
-        // Database Modal Elements
+        // Cloud Links Elements
+        const manageCloudLinksBtn = document.getElementById('manageCloudLinksBtn');
+        const cloudModal = document.getElementById('cloudModal');
+        const closeCloudModal = document.getElementById('closeCloudModal');
+        const closeCloudModalBtn = document.getElementById('closeCloudModalBtn');
+        const cloudLinksList = document.getElementById('cloudLinksList');
+        
+        // Database Manager Modal Elements
         const dbModal = document.getElementById('dbModal');
         const closeDbModal = document.getElementById('closeDbModal');
         const gamesCount = document.getElementById('gamesCount');
         const musicCount = document.getElementById('musicCount');
-        const youtubeCount = document.getElementById('youtubeCount');
+        const videosCount = document.getElementById('videosCount');
         const dbSize = document.getElementById('dbSize');
+        const lastSync = document.getElementById('lastSync');
         const backupDbBtn = document.getElementById('backupDbBtn');
         const restoreDbBtn = document.getElementById('restoreDbBtn');
         const clearDbBtn = document.getElementById('clearDbBtn');
         const restoreFile = document.getElementById('restoreFile');
+        const syncDbBtn = document.getElementById('syncDbBtn');
         
         // Share Modal Elements
         const shareModal = document.getElementById('shareModal');
@@ -2477,6 +2930,20 @@
         const importGamesBtn = document.getElementById('importGamesBtn');
         const importFile = document.getElementById('importFile');
         
+        // Smart Link Elements
+        const shareDirect = document.getElementById('shareDirect');
+        const generateSmartLinkBtn = document.getElementById('generateSmartLinkBtn');
+        const generateCloudLinkBtn = document.getElementById('generateCloudLinkBtn');
+        const smartLinkContainer = document.getElementById('smartLinkContainer');
+        const smartLinkInput = document.getElementById('smartLinkInput');
+        const copySmartLinkBtn = document.getElementById('copySmartLinkBtn');
+        const testSmartLinkBtn = document.getElementById('testSmartLinkBtn');
+        const shortenSmartLinkBtn = document.getElementById('shortenSmartLinkBtn');
+        const linkStats = document.getElementById('linkStats');
+        const compressionLevel = document.getElementById('compressionLevel');
+        const cloudLinkInfo = document.getElementById('cloudLinkInfo');
+        const directLinkLoading = document.getElementById('directLinkLoading');
+        
         // Toast Notification
         const toast = document.getElementById('toast');
         
@@ -2492,6 +2959,7 @@
         
         // State
         let games = [];
+        let youtubeVideos = [];
         let currentGameId = null;
         let mediaItems = [];
         let downloadLinkItems = [];
@@ -2501,208 +2969,72 @@
         let updateProgressInterval;
         let isSearching = false;
         let currentSearchQuery = '';
-        let currentPage = 'games';
+        let currentTab = 'games';
+        
+        // Initialize Database Manager
+        const db = new DatabaseManager();
+        
+        // Initialize Authentication System
+        const authSystem = new AuthSystem();
         
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication first
             authSystem.checkAuth();
+            
+            // Then load the rest
             loadGames();
-            loadMusicPlaylist();
             loadYouTubeVideos();
+            loadMusicPlaylist();
             setupEventListeners();
             loadDefaultMusic();
             updateSiteUrl();
             updateDatabaseStatus();
             
+            // Clean expired cloud links
+            db.cleanExpiredCloudLinks();
+            
+            // Load from smart link if available
+            loadFromSmartLink();
+            
+            // Load sample games if empty
             if (db.getGames().length === 0) {
                 loadSampleGames();
             }
             
-            // Show games page by default
-            showPage('games');
+            // Load sample YouTube videos if empty and admin
+            if (db.getYouTubeVideos().length === 0 && authSystem.isAuthenticated()) {
+                loadSampleYouTubeVideos();
+            }
         });
         
-        // ==================== PAGE NAVIGATION ====================
-        function showPage(page) {
-            currentPage = page;
+        // ==================== TAB SYSTEM ====================
+        function switchTab(tab) {
+            currentTab = tab;
             
-            if (page === 'games') {
-                gamesPage.style.display = 'flex';
-                youtubePage.style.display = 'none';
-                gamesPageBtn.classList.add('active');
-                youtubePageBtn.classList.remove('active');
-                loadGames();
-            } else if (page === 'youtube') {
-                gamesPage.style.display = 'none';
-                youtubePage.style.display = 'block';
-                youtubePageBtn.classList.add('active');
-                gamesPageBtn.classList.remove('active');
-                loadYouTubeVideos();
+            // Update tab buttons
+            gamesTabBtn.classList.remove('active');
+            videosTabBtn.classList.remove('active');
+            
+            // Show/hide tab content
+            gamesTabContent.style.display = 'none';
+            videosTabContent.style.display = 'none';
+            
+            if (tab === 'games') {
+                gamesTabBtn.classList.add('active');
+                gamesTabContent.style.display = 'block';
+                // Clear search when switching to games tab
+                if (currentSearchQuery) {
+                    performSearch(currentSearchQuery);
+                }
+            } else {
+                videosTabBtn.classList.add('active');
+                videosTabContent.style.display = 'block';
+                // Clear search when switching to videos tab
+                if (currentSearchQuery) {
+                    performSearch(currentSearchQuery);
+                }
             }
-        }
-        
-        // ==================== YOUTUBE FUNCTIONALITY ====================
-        function loadYouTubeVideos() {
-            const videos = db.getYouTubeVideos();
-            renderYouTubeVideos(videos);
-        }
-        
-        function renderYouTubeVideos(videos) {
-            youtubeVideosGrid.innerHTML = '';
-            
-            if (videos.length === 0) {
-                youtubeEmptyState.style.display = 'block';
-                youtubeEmptyState.innerHTML = `
-                    <i class="fab fa-youtube"></i>
-                    <h3>No YouTube Videos Added</h3>
-                    <p>${authSystem.isAuthenticated() ? 'Click the YouTube button to add videos' : 'Login as admin to add YouTube videos'}</p>
-                `;
-                return;
-            }
-            
-            youtubeEmptyState.style.display = 'none';
-            
-            const isAuthenticated = authSystem.isAuthenticated();
-            
-            videos.forEach(video => {
-                const videoCard = document.createElement('div');
-                videoCard.className = 'youtube-video-card';
-                
-                const videoId = extractYouTubeId(video.url);
-                const thumbnailUrl = videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=400&h=225&fit=crop';
-                
-                videoCard.innerHTML = `
-                    <img src="${thumbnailUrl}" alt="${video.title}" class="youtube-thumbnail" 
-                         onclick="playYouTubeVideo('${videoId}', '${video.title}')"
-                         onerror="this.src='https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=400&h=225&fit=crop'">
-                    <div class="youtube-video-info">
-                        <div class="youtube-video-title">${video.title || 'YouTube Video'}</div>
-                        ${isAuthenticated ? `
-                            <div class="youtube-video-actions">
-                                <button class="action-btn delete-btn" onclick="deleteYouTubeVideo(${video.id})">
-                                    <i class="fas fa-trash"></i> Delete
-                                </button>
-                            </div>
-                        ` : ''}
-                    </div>
-                `;
-                
-                youtubeVideosGrid.appendChild(videoCard);
-            });
-        }
-        
-        function playYouTubeVideo(videoId, title) {
-            modalTitle.textContent = title || 'YouTube Video';
-            modalBody.innerHTML = `
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000;">
-                    <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen
-                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                    </iframe>
-                </div>
-                <div style="margin-top: 20px; text-align: center;">
-                    <button class="action-btn" onclick="closeMediaModal()" style="margin: 0 auto;">
-                        <i class="fas fa-times"></i> Close Video
-                    </button>
-                </div>
-            `;
-            
-            mediaModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function openYouTubeModal() {
-            if (!authSystem.checkAccess()) return;
-            
-            youtubeModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-            youtubeUrlInput.value = '';
-            youtubeTitleInput.value = '';
-            renderYouTubeList();
-        }
-        
-        function closeYouTubeModal() {
-            youtubeModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-        
-        function addYouTubeVideo() {
-            const url = youtubeUrlInput.value.trim();
-            const title = youtubeTitleInput.value.trim();
-            
-            if (!url) {
-                showToast('Please enter a YouTube URL', 'error');
-                return;
-            }
-            
-            const videoId = extractYouTubeId(url);
-            if (!videoId) {
-                showToast('Invalid YouTube URL', 'error');
-                return;
-            }
-            
-            const videoData = {
-                url: url,
-                title: title || `YouTube Video ${db.getYouTubeVideos().length + 1}`,
-                videoId: videoId,
-                addedAt: new Date().toISOString()
-            };
-            
-            db.addYouTubeVideo(videoData);
-            loadYouTubeVideos();
-            renderYouTubeList();
-            
-            youtubeUrlInput.value = '';
-            youtubeTitleInput.value = '';
-            
-            showToast(`YouTube video added: ${videoData.title}`);
-            updateDatabaseStatus();
-        }
-        
-        function deleteYouTubeVideo(id) {
-            if (!authSystem.checkAccess()) return;
-            
-            if (!confirm('Are you sure you want to delete this YouTube video?')) return;
-            
-            db.deleteYouTubeVideo(id);
-            loadYouTubeVideos();
-            renderYouTubeList();
-            
-            showToast('YouTube video deleted');
-            updateDatabaseStatus();
-        }
-        
-        function renderYouTubeList() {
-            const videos = db.getYouTubeVideos();
-            youtubeUrlList.innerHTML = '';
-            
-            if (videos.length === 0) {
-                youtubeUrlList.innerHTML = '<div style="color: #777; text-align: center; padding: 10px;">No YouTube videos added yet</div>';
-                return;
-            }
-            
-            videos.forEach(video => {
-                const urlItem = document.createElement('div');
-                urlItem.className = 'youtube-url-item';
-                urlItem.innerHTML = `
-                    <div>
-                        <strong>${video.title}</strong><br>
-                        <small style="color: #b0b8d0;">${video.url.substring(0, 50)}...</small>
-                    </div>
-                    <button class="action-btn delete-btn" onclick="deleteYouTubeVideo(${video.id})">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                `;
-                youtubeUrlList.appendChild(urlItem);
-            });
-        }
-        
-        function extractYouTubeId(url) {
-            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-            const match = url.match(regExp);
-            return (match && match[2].length === 11) ? match[2] : null;
         }
         
         // ==================== SEARCH FUNCTIONALITY ====================
@@ -2710,32 +3042,52 @@
             currentSearchQuery = query;
             
             if (!query || query.trim() === '') {
+                // Clear search
                 searchResultsInfo.style.display = 'none';
                 isSearching = false;
-                gamesHeader.textContent = 'Game Collection';
-                loadGames();
+                if (currentTab === 'games') {
+                    gamesHeader.textContent = 'Game Collection';
+                    loadGames();
+                } else {
+                    loadYouTubeVideos();
+                }
                 return;
             }
             
-            const searchResults = db.searchGames(query);
             isSearching = true;
             
-            searchResultsCount.textContent = `Found ${searchResults.length} games for "${query}"`;
-            searchResultsInfo.style.display = 'flex';
-            
-            gamesHeader.textContent = `Search Results for "${query}"`;
-            
-            displayGames(searchResults);
+            if (currentTab === 'games') {
+                const searchResults = db.searchGames(query);
+                
+                // Update search results info
+                searchResultsCount.textContent = `Found ${searchResults.length} games for "${query}"`;
+                searchResultsInfo.style.display = 'flex';
+                
+                // Update header
+                gamesHeader.textContent = `Search Results for "${query}"`;
+                
+                // Display search results
+                displayGames(searchResults);
+            } else {
+                const searchResults = db.searchYouTubeVideos(query);
+                
+                // Update search results info
+                searchResultsCount.textContent = `Found ${searchResults.length} videos for "${query}"`;
+                searchResultsInfo.style.display = 'flex';
+                
+                // Display search results
+                displayYouTubeVideos(searchResults);
+            }
         }
         
         function displayGames(gamesToDisplay) {
             if (gamesToDisplay.length === 0) {
-                emptyState.style.display = 'block';
+                emptyStateGames.style.display = 'block';
                 gamesGrid.innerHTML = '';
                 return;
             }
             
-            emptyState.style.display = 'none';
+            emptyStateGames.style.display = 'none';
             gamesGrid.innerHTML = '';
             
             const isAuthenticated = authSystem.isAuthenticated();
@@ -2782,15 +3134,576 @@
             });
         }
         
-        // ==================== DATABASE FUNCTIONS ====================
+        function displayYouTubeVideos(videosToDisplay) {
+            if (videosToDisplay.length === 0) {
+                emptyStateVideos.style.display = 'block';
+                videosGrid.innerHTML = '';
+                return;
+            }
+            
+            emptyStateVideos.style.display = 'none';
+            videosGrid.innerHTML = '';
+            
+            videosToDisplay.forEach(video => {
+                const videoCard = document.createElement('div');
+                videoCard.className = 'video-card';
+                
+                videoCard.innerHTML = `
+                    <div class="video-thumbnail-container">
+                        <img src="${video.thumbnail}" alt="${video.title}" class="video-thumbnail" onerror="this.src='https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg'">
+                        <div class="video-play-btn">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">${video.title || 'YouTube Video'}</div>
+                        <div class="video-date">
+                            <i class="far fa-calendar"></i> ${new Date(video.timestamp).toLocaleDateString()}
+                        </div>
+                    </div>
+                `;
+                
+                videoCard.addEventListener('click', function() {
+                    window.open(`https://www.youtube.com/watch?v=${video.videoId}`, '_blank');
+                });
+                
+                videosGrid.appendChild(videoCard);
+            });
+        }
+        
+        // ==================== YOUTUBE VIDEOS SYSTEM ====================
+        function loadYouTubeVideos() {
+            youtubeVideos = db.getYouTubeVideos();
+            displayYouTubeVideos(youtubeVideos);
+        }
+        
+        function renderYouTubeVideosList() {
+            youtubeVideosList.innerHTML = '';
+            
+            if (youtubeVideos.length === 0) {
+                youtubeVideosList.innerHTML = '<div style="color: #777; text-align: center; padding: 20px;">No YouTube videos added yet</div>';
+                return;
+            }
+            
+            youtubeVideos.forEach(video => {
+                const videoItem = document.createElement('div');
+                videoItem.className = 'youtube-video-item';
+                videoItem.innerHTML = `
+                    <img src="${video.thumbnail}" alt="Thumbnail" class="youtube-video-thumb" onerror="this.src='https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg'">
+                    <div class="youtube-video-info">
+                        <div class="youtube-video-title">${video.title || 'YouTube Video'}</div>
+                        <div class="youtube-video-id">ID: ${video.videoId}</div>
+                    </div>
+                    <button class="action-btn delete-btn" onclick="deleteYouTubeVideo('${video.id}')">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                `;
+                
+                youtubeVideosList.appendChild(videoItem);
+            });
+        }
+        
+        function addYouTubeVideo() {
+            if (!authSystem.checkAccess()) return;
+            
+            const url = youtubeUrlInput.value.trim();
+            const title = youtubeTitleInput.value.trim();
+            
+            if (!url) {
+                showToast('Please enter a YouTube URL', 'error');
+                return;
+            }
+            
+            const videoData = db.parseYouTubeUrl(url);
+            if (!videoData) {
+                showToast('Invalid YouTube URL. Please use a valid YouTube video URL.', 'error');
+                return;
+            }
+            
+            const youtubeVideo = {
+                id: 'vid_' + Date.now(),
+                url: url,
+                videoId: videoData.videoId,
+                title: title || null,
+                thumbnail: videoData.thumbnail,
+                embedUrl: videoData.embedUrl,
+                timestamp: new Date().toISOString()
+            };
+            
+            db.addYouTubeVideo(youtubeVideo);
+            loadYouTubeVideos();
+            renderYouTubeVideosList();
+            
+            youtubeUrlInput.value = '';
+            youtubeTitleInput.value = '';
+            
+            showToast('YouTube video added successfully!');
+            updateDatabaseStatus();
+        }
+        
+        function deleteYouTubeVideo(id) {
+            if (!authSystem.checkAccess()) return;
+            
+            if (!confirm('Are you sure you want to delete this YouTube video?')) return;
+            
+            db.deleteYouTubeVideo(id);
+            loadYouTubeVideos();
+            renderYouTubeVideosList();
+            
+            showToast('YouTube video deleted successfully!');
+            updateDatabaseStatus();
+        }
+        
+        // ==================== CLOUD LINKS SYSTEM ====================
+        function loadCloudLinks() {
+            const links = db.getCloudLinks();
+            renderCloudLinksList(links);
+        }
+        
+        function renderCloudLinksList(links) {
+            cloudLinksList.innerHTML = '';
+            
+            if (links.length === 0) {
+                cloudLinksList.innerHTML = '<div style="color: #777; text-align: center; padding: 20px;">No cloud links created yet</div>';
+                return;
+            }
+            
+            const now = new Date();
+            
+            links.forEach(link => {
+                const expiresAt = new Date(link.expiresAt);
+                const isExpired = expiresAt < now;
+                const daysLeft = Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24));
+                
+                const linkItem = document.createElement('div');
+                linkItem.className = 'cloud-link-item';
+                linkItem.innerHTML = `
+                    <div style="margin-bottom: 10px;">
+                        <strong>ID: ${link.id}</strong>
+                        <span style="float: right; color: ${isExpired ? '#ff3333' : '#25D366'}">
+                            ${isExpired ? 'Expired' : `${daysLeft} days left`}
+                        </span>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--text-secondary);">
+                        Created: ${new Date(link.createdAt).toLocaleDateString()}<br>
+                        Games: ${link.gameCount}<br>
+                        Views: ${link.views || 0}
+                    </div>
+                    ${authSystem.isAuthenticated() ? `
+                        <div style="margin-top: 10px; display: flex; gap: 10px;">
+                            <button class="action-btn" onclick="copyCloudLink('${link.id}')">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                            <button class="action-btn delete-btn" onclick="deleteCloudLink('${link.id}')">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </div>
+                    ` : ''}
+                `;
+                
+                cloudLinksList.appendChild(linkItem);
+            });
+        }
+        
+        function copyCloudLink(id) {
+            const baseUrl = window.location.origin + window.location.pathname;
+            const link = `${baseUrl}?cloud=${id}`;
+            
+            navigator.clipboard.writeText(link).then(() => {
+                showToast('Cloud link copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                showToast('Failed to copy link', 'error');
+            });
+        }
+        
+        function deleteCloudLink(id) {
+            if (!authSystem.checkAccess()) return;
+            
+            if (!confirm('Are you sure you want to delete this cloud link?')) return;
+            
+            db.deleteCloudLink(id);
+            loadCloudLinks();
+            showToast('Cloud link deleted successfully!');
+        }
+        
+        // ==================== MODIFIED FUNCTIONS ====================
+        
+        // Load from smart link
+        function loadFromSmartLink() {
+            const result = db.loadFromSmartLink();
+            if (!result) return;
+            
+            if (result.type === 'single' && result.games) {
+                handleSmartLinkImport(result.games);
+            } else if (result.type === 'chunk') {
+                showToast(`Loaded part ${result.part} of ${result.total} with ${result.games.length} games`, 'info');
+                handleSmartLinkImport(result.games);
+            } else if (result.type === 'multi') {
+                showToast(`Found multi-link with ${result.data.gameCount} games in ${result.data.links.length} parts`, 'info');
+            }
+        }
+        
+        // Handle smart link import
+        function handleSmartLinkImport(importedGames) {
+            if (!importedGames || importedGames.length === 0) return;
+            
+            const existingGames = db.getGames();
+            
+            // If we have no games, add directly
+            if (existingGames.length === 0) {
+                db.saveGames(importedGames);
+                loadGames();
+                updateDatabaseStatus();
+                showToast(`Loaded ${importedGames.length} games from link!`);
+                return;
+            }
+            
+            // Otherwise ask
+            const shouldMerge = confirm(
+                `This link contains ${importedGames.length} games.\n\n` +
+                `You currently have ${existingGames.length} games.\n\n` +
+                `Click OK to merge with existing games.\n` +
+                `Click Cancel to replace all games.`
+            );
+            
+            if (shouldMerge) {
+                // Merge
+                const existingIds = existingGames.map(g => g.id);
+                const newGames = importedGames.filter(g => !existingIds.includes(g.id));
+                const mergedGames = [...existingGames, ...newGames];
+                db.saveGames(mergedGames);
+                showToast(`Added ${newGames.length} new games (merged)`);
+            } else {
+                // Replace
+                db.saveGames(importedGames);
+                showToast(`Replaced all games with ${importedGames.length} new games`);
+            }
+            
+            loadGames();
+            updateDatabaseStatus();
+        }
+        
+        // Generate smart link
+        function generateSmartLink() {
+            directLinkLoading.style.display = 'block';
+            smartLinkContainer.style.display = 'none';
+            
+            setTimeout(() => {
+                try {
+                    const level = compressionLevel.value;
+                    const result = db.createSmartLink(level);
+                    
+                    directLinkLoading.style.display = 'none';
+                    
+                    if (result.error) {
+                        showToast(result.error, 'error');
+                        return;
+                    }
+                    
+                    if (result.type === 'single') {
+                        smartLinkInput.value = result.url;
+                        linkStats.innerHTML = `
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Games: ${result.games}</span>
+                                <span>Link Size: ${Math.round(result.size / 1024 * 100) / 100} KB</span>
+                                <span>Type: Single Link</span>
+                            </div>
+                        `;
+                    } else {
+                        smartLinkInput.value = result.url;
+                        linkStats.innerHTML = `
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Games: ${result.games}</span>
+                                <span>Parts: ${result.parts}</span>
+                                <span>Type: Multi-Part Link</span>
+                            </div>
+                        `;
+                    }
+                    
+                    smartLinkContainer.style.display = 'block';
+                    smartLinkContainer.scrollIntoView({ behavior: 'smooth' });
+                    
+                    showToast(`Smart link generated for ${result.games} games!`);
+                    
+                } catch (error) {
+                    directLinkLoading.style.display = 'none';
+                    console.error('Error generating smart link:', error);
+                    showToast('Error generating link', 'error');
+                }
+            }, 100);
+        }
+        
+        // Generate cloud link
+        function generateCloudLink() {
+            directLinkLoading.style.display = 'block';
+            
+            setTimeout(() => {
+                try {
+                    const result = db.createCloudLink();
+                    
+                    directLinkLoading.style.display = 'none';
+                    
+                    if (result.error) {
+                        showToast(result.error, 'error');
+                        return;
+                    }
+                    
+                    smartLinkInput.value = result.url;
+                    linkStats.innerHTML = `
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Games: ${result.games}</span>
+                            <span>Expires: ${result.expires}</span>
+                            <span>Type: Cloud Link</span>
+                        </div>
+                    `;
+                    
+                    smartLinkContainer.style.display = 'block';
+                    cloudLinkInfo.style.display = 'block';
+                    smartLinkContainer.scrollIntoView({ behavior: 'smooth' });
+                    
+                    showToast(`Cloud link created! Expires on ${result.expires}`);
+                    
+                } catch (error) {
+                    directLinkLoading.style.display = 'none';
+                    console.error('Error generating cloud link:', error);
+                    showToast('Error generating cloud link', 'error');
+                }
+            }, 100);
+        }
+        
+        // Update database status
         function updateDatabaseStatus() {
             const stats = db.getStatistics();
             dbStatus.innerHTML = `
                 <i class="fas fa-database"></i>
-                <span>Database: ${stats.gamesCount} games, ${stats.youtubeCount} videos</span>
+                <span>Database: ${stats.gamesCount} games, ${stats.musicCount} tracks, ${stats.videosCount} videos</span>
             `;
         }
         
+        // Event Listeners
+        function setupEventListeners() {
+            // Tab switching
+            gamesTabBtn.addEventListener('click', () => switchTab('games'));
+            videosTabBtn.addEventListener('click', () => switchTab('videos'));
+            
+            // Search functionality
+            searchBtn.addEventListener('click', () => {
+                performSearch(searchInput.value);
+            });
+            
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch(searchInput.value);
+                }
+            });
+            
+            clearSearchBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                performSearch('');
+            });
+            
+            // YouTube Videos management
+            youtubeVideosBtn.addEventListener('click', () => {
+                if (!authSystem.checkAccess()) return;
+                youtubeModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                renderYouTubeVideosList();
+            });
+            
+            closeYoutubeModal.addEventListener('click', () => {
+                youtubeModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            youtubeModal.addEventListener('click', (e) => {
+                if (e.target === youtubeModal) {
+                    youtubeModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            addYoutubeVideoBtn.addEventListener('click', addYouTubeVideo);
+            
+            // Cloud Links management
+            manageCloudLinksBtn.addEventListener('click', () => {
+                cloudModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                loadCloudLinks();
+            });
+            
+            closeCloudModal.addEventListener('click', () => {
+                cloudModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            closeCloudModalBtn.addEventListener('click', () => {
+                cloudModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            cloudModal.addEventListener('click', (e) => {
+                if (e.target === cloudModal) {
+                    cloudModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Modified with auth check
+            addNewGameBtn.addEventListener('click', () => {
+                if (authSystem.checkAccess()) {
+                    resetForm();
+                }
+            });
+            
+            addMediaBtn.addEventListener('click', () => {
+                if (authSystem.checkAccess()) {
+                    addMediaItem();
+                }
+            });
+            
+            addMusicUrlBtn.addEventListener('click', () => {
+                if (authSystem.checkAccess()) {
+                    addMusicToPlaylist();
+                }
+            });
+            
+            addLinkBtn.addEventListener('click', () => {
+                if (authSystem.checkAccess()) {
+                    addDownloadLink();
+                }
+            });
+            
+            addMusicBtn.addEventListener('click', () => {
+                if (authSystem.checkAccess()) {
+                    musicUrlInput.scrollIntoView({behavior: 'smooth'});
+                }
+            });
+            
+            gameForm.addEventListener('submit', saveGame);
+            cancelBtn.addEventListener('click', resetForm);
+            
+            // Database Manager
+            dbManagerBtn.addEventListener('click', openDbModal);
+            closeDbModal.addEventListener('click', closeDbModalFunc);
+            dbModal.addEventListener('click', function(e) {
+                if (e.target === dbModal) {
+                    closeDbModalFunc();
+                }
+            });
+            
+            backupDbBtn.addEventListener('click', createBackup);
+            restoreDbBtn.addEventListener('click', () => restoreFile.click());
+            restoreFile.addEventListener('change', restoreBackup);
+            clearDbBtn.addEventListener('click', clearDatabase);
+            syncDbBtn.addEventListener('click', syncDatabase);
+            
+            // Share functionality
+            shareSiteBtn.addEventListener('click', openShareModal);
+            closeShareModal.addEventListener('click', closeShareModalFunc);
+            shareModal.addEventListener('click', function(e) {
+                if (e.target === shareModal) {
+                    closeShareModalFunc();
+                }
+            });
+            
+            copyUrlBtn.addEventListener('click', copySiteUrl);
+            shareWhatsApp.addEventListener('click', shareViaWhatsApp);
+            shareTelegram.addEventListener('click', shareViaTelegram);
+            shareEmail.addEventListener('click', shareViaEmail);
+            copyLink.addEventListener('click', copySiteUrl);
+            downloadSite.addEventListener('click', downloadSiteFiles);
+            showQR.addEventListener('click', generateQRCode);
+            exportGamesBtn.addEventListener('click', exportGamesData);
+            importGamesBtn.addEventListener('click', () => importFile.click());
+            importFile.addEventListener('change', importGamesData);
+            
+            // Smart link functionality
+            shareDirect.addEventListener('click', generateSmartLink);
+            generateSmartLinkBtn.addEventListener('click', generateSmartLink);
+            generateCloudLinkBtn.addEventListener('click', generateCloudLink);
+            
+            copySmartLinkBtn.addEventListener('click', function() {
+                if (smartLinkInput.value) {
+                    smartLinkInput.select();
+                    navigator.clipboard.writeText(smartLinkInput.value).then(() => {
+                        showToast('Smart link copied!');
+                    }).catch(err => {
+                        console.error('Failed to copy:', err);
+                        showToast('Failed to copy link', 'error');
+                    });
+                }
+            });
+            
+            testSmartLinkBtn.addEventListener('click', function() {
+                if (smartLinkInput.value) {
+                    window.open(smartLinkInput.value, '_blank');
+                }
+            });
+            
+            shortenSmartLinkBtn.addEventListener('click', function() {
+                if (smartLinkInput.value) {
+                    // Link shortening simulation
+                    const shortUrl = `https://xtre.am/${Math.random().toString(36).substr(2, 6)}`;
+                    smartLinkInput.value = shortUrl;
+                    showToast('Link shortened (simulated)');
+                }
+            });
+            
+            // Music player controls
+            playPauseBtn.addEventListener('click', togglePlayPause);
+            prevBtn.addEventListener('click', playPrevious);
+            nextBtn.addEventListener('click', playNext);
+            
+            // Modal controls
+            closeModal.addEventListener('click', closeMediaModal);
+            mediaModal.addEventListener('click', function(e) {
+                if (e.target === mediaModal) {
+                    closeMediaModal();
+                }
+            });
+            
+            // Progress bar click
+            nowPlaying.addEventListener('click', function(e) {
+                if (e.target.classList.contains('progress-container')) {
+                    const rect = e.target.getBoundingClientRect();
+                    const clickPosition = (e.clientX - rect.left) / rect.width;
+                    backgroundMusic.currentTime = clickPosition * backgroundMusic.duration;
+                }
+            });
+            
+            // Music events
+            backgroundMusic.addEventListener('timeupdate', updateProgressBar);
+            backgroundMusic.addEventListener('ended', playNext);
+            
+            // Auto-save for media items
+            mediaUrlInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (authSystem.checkAccess()) {
+                        addMediaItem();
+                    }
+                }
+            });
+            
+            musicUrlInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (authSystem.checkAccess()) {
+                        addMusicToPlaylist();
+                    }
+                }
+            });
+            
+            youtubeUrlInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    addYouTubeVideo();
+                }
+            });
+        }
+        
+        // Database Manager Functions
         function openDbModal() {
             if (!authSystem.checkAccess()) return;
             
@@ -2808,12 +3721,30 @@
             const stats = db.getStatistics();
             gamesCount.textContent = stats.gamesCount;
             musicCount.textContent = stats.musicCount;
-            youtubeCount.textContent = stats.youtubeCount;
+            videosCount.textContent = stats.videosCount;
             dbSize.textContent = `${stats.dbSize} KB`;
+            
+            if (stats.lastSync !== 'Never') {
+                const lastSyncDate = new Date(stats.lastSync);
+                lastSync.textContent = lastSyncDate.toLocaleString();
+            } else {
+                lastSync.textContent = 'Never';
+            }
         }
         
         function createBackup() {
-            const backup = db.createBackup();
+            if (!authSystem.checkAccess()) return;
+            
+            const backup = {
+                version: '3.0',
+                timestamp: new Date().toISOString(),
+                games: db.getGames(),
+                music: db.getMusicPlaylist(),
+                youtubeVideos: db.getYouTubeVideos(),
+                cloudLinks: db.getCloudLinks(),
+                settings: db.getSettings()
+            };
+            
             const dataStr = JSON.stringify(backup, null, 2);
             const blob = new Blob([dataStr], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
@@ -2846,11 +3777,19 @@
                         return;
                     }
                     
-                    db.restoreBackup(backupData);
+                    db.saveGames(backupData.games || []);
+                    db.saveMusicPlaylist(backupData.music || []);
+                    db.saveYouTubeVideos(backupData.youtubeVideos || []);
+                    if (backupData.cloudLinks) {
+                        db.saveCloudLinks(backupData.cloudLinks);
+                    }
+                    if (backupData.settings) {
+                        db.saveSettings(backupData.settings);
+                    }
                     
                     loadGames();
-                    loadMusicPlaylist();
                     loadYouTubeVideos();
+                    loadMusicPlaylist();
                     updateDbStats();
                     updateDatabaseStatus();
                     
@@ -2869,13 +3808,16 @@
         function clearDatabase() {
             if (!authSystem.checkAccess()) return;
             
-            if (!confirm('This will delete ALL games, music, and YouTube videos. Are you sure?')) return;
+            if (!confirm('This will delete ALL games, music, videos and cloud links. Are you sure?')) return;
             
-            db.clearAllData();
+            db.saveGames([]);
+            db.saveMusicPlaylist([]);
+            db.saveYouTubeVideos([]);
+            db.saveCloudLinks([]);
             
             loadGames();
-            loadMusicPlaylist();
             loadYouTubeVideos();
+            loadMusicPlaylist();
             updateDbStats();
             updateDatabaseStatus();
             
@@ -2883,12 +3825,22 @@
             closeDbModalFunc();
         }
         
-        // ==================== SHARE FUNCTIONALITY ====================
+        function syncDatabase() {
+            db.updateLastSync();
+            updateDbStats();
+            updateDatabaseStatus();
+            showToast('Database synced!');
+        }
+        
+        // Share Functionality
         function openShareModal() {
             shareModal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
             updateSiteUrl();
-            qrContainer.style.display = 'none';
+            
+            smartLinkContainer.style.display = 'none';
+            cloudLinkInfo.style.display = 'none';
+            directLinkLoading.style.display = 'none';
         }
         
         function closeShareModalFunc() {
@@ -2908,7 +3860,8 @@
                 showToast('Link copied to clipboard!');
             }).catch(err => {
                 console.error('Failed to copy: ', err);
-                showToast('Failed to copy link', 'error');
+                document.execCommand('copy');
+                showToast('Link copied to clipboard!');
             });
         }
         
@@ -2934,19 +3887,61 @@
         }
         
         function downloadSiteFiles() {
+            // Get current data
+            const currentData = {
+                games: db.getGames(),
+                music: db.getMusicPlaylist(),
+                youtubeVideos: db.getYouTubeVideos(),
+                cloudLinks: db.getCloudLinks(),
+                settings: db.getSettings()
+            };
+            
+            // Create a clone of the current page
             const htmlContent = document.documentElement.outerHTML;
-            const blob = new Blob([htmlContent], { type: 'text/html' });
+            
+            // Inject current data into the HTML as a script
+            const dataScript = `
+                <script>
+                    // Injected data from Xtream Games
+                    const injectedData = ${JSON.stringify(currentData, null, 2)};
+                    
+                    // Override DatabaseManager methods to use injected data
+                    const originalDbManager = window.db;
+                    if (originalDbManager) {
+                        originalDbManager.saveGames(injectedData.games || []);
+                        originalDbManager.saveMusicPlaylist(injectedData.music || []);
+                        originalDbManager.saveYouTubeVideos(injectedData.youtubeVideos || []);
+                        originalDbManager.saveCloudLinks(injectedData.cloudLinks || []);
+                        if (injectedData.settings) {
+                            originalDbManager.saveSettings(injectedData.settings);
+                        }
+                    }
+                    
+                    // Reload the data
+                    setTimeout(() => {
+                        if (typeof loadGames === 'function') loadGames();
+                        if (typeof loadYouTubeVideos === 'function') loadYouTubeVideos();
+                        if (typeof loadMusicPlaylist === 'function') loadMusicPlaylist();
+                        if (typeof updateDatabaseStatus === 'function') updateDatabaseStatus();
+                    }, 1000);
+                <\/script>
+            `;
+            
+            // Insert the script before the closing </body> tag
+            const modifiedHtml = htmlContent.replace('</body>', dataScript + '</body>');
+            
+            const blob = new Blob([modifiedHtml], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
             
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'Xtream-Games.html';
+            a.download = 'Xtream-Games-With-Data.html';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
             
-            showToast('Site downloaded as HTML file!');
+            showToast('Site downloaded with all current data!');
         }
         
         function generateQRCode() {
@@ -2972,7 +3967,16 @@
         }
         
         function exportGamesData() {
-            const backup = db.createBackup();
+            const backup = {
+                version: '3.0',
+                timestamp: new Date().toISOString(),
+                games: db.getGames(),
+                music: db.getMusicPlaylist(),
+                youtubeVideos: db.getYouTubeVideos(),
+                cloudLinks: db.getCloudLinks(),
+                settings: db.getSettings()
+            };
+            
             const dataStr = JSON.stringify(backup, null, 2);
             const blob = new Blob([dataStr], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
@@ -2985,7 +3989,7 @@
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
             
-            showToast('All data exported successfully!');
+            showToast('Games data exported successfully!');
         }
         
         function importGamesData(event) {
@@ -2998,46 +4002,42 @@
                     const data = JSON.parse(e.target.result);
                     
                     if (data.games && Array.isArray(data.games)) {
-                        const choice = confirm('Import data? This will merge with your current data.\n\nClick OK to merge, Cancel to replace.');
+                        const choice = confirm('Import games data? This will replace your current games.\n\nClick OK to replace, Cancel to merge.');
                         
                         if (choice) {
-                            // Merge games
+                            db.saveGames(data.games);
+                        } else {
                             const existingGames = db.getGames();
                             const existingIds = existingGames.map(g => g.id);
                             const newGames = data.games.filter(g => !existingIds.includes(g.id));
                             const mergedGames = [...existingGames, ...newGames];
                             db.saveGames(mergedGames);
-                            
-                            // Merge music
-                            if (data.music && Array.isArray(data.music)) {
-                                const existingMusic = db.getMusicPlaylist();
-                                const existingMusicUrls = existingMusic.map(m => m.url);
-                                const newMusic = data.music.filter(m => !existingMusicUrls.includes(m.url));
-                                const mergedMusic = [...existingMusic, ...newMusic];
-                                db.saveMusicPlaylist(mergedMusic);
-                            }
-                            
-                            // Merge YouTube videos
-                            if (data.youtube && Array.isArray(data.youtube)) {
-                                const existingYoutube = db.getYouTubeVideos();
-                                const existingYoutubeIds = existingYoutube.map(y => y.videoId);
-                                const newYoutube = data.youtube.filter(y => !existingYoutubeIds.includes(y.videoId));
-                                const mergedYoutube = [...existingYoutube, ...newYoutube];
-                                db.saveYouTubeVideos(mergedYoutube);
-                            }
-                            
-                            showToast(`Data merged: ${newGames.length} new games added`);
-                        } else {
-                            // Replace all data
-                            db.restoreBackup(data);
-                            showToast('All data replaced successfully!');
                         }
                         
                         loadGames();
-                        loadMusicPlaylist();
-                        loadYouTubeVideos();
-                        updateDatabaseStatus();
+                        
+                        if (data.music && Array.isArray(data.music)) {
+                            const existingMusic = db.getMusicPlaylist();
+                            const mergedMusic = [...existingMusic, ...data.music];
+                            const uniqueUrls = new Set();
+                            const filteredMusic = mergedMusic.filter(track => {
+                                if (uniqueUrls.has(track.url)) return false;
+                                uniqueUrls.add(track.url);
+                                return true;
+                            });
+                            
+                            db.saveMusicPlaylist(filteredMusic);
+                            renderMusicPlaylist();
+                        }
+                        
+                        if (data.youtubeVideos && Array.isArray(data.youtubeVideos)) {
+                            db.saveYouTubeVideos(data.youtubeVideos);
+                            loadYouTubeVideos();
+                        }
+                        
+                        showToast('Games data imported successfully!');
                         closeShareModalFunc();
+                        updateDatabaseStatus();
                     } else {
                         showToast('Invalid data format', 'error');
                     }
@@ -3051,7 +4051,6 @@
             importFile.value = '';
         }
         
-        // ==================== TOAST NOTIFICATION ====================
         function showToast(message, type = 'success') {
             toast.textContent = message;
             toast.className = 'toast';
@@ -3070,7 +4069,7 @@
             }, 3000);
         }
         
-        // ==================== MUSIC PLAYER FUNCTIONS ====================
+        // Music Player Functions
         function loadDefaultMusic() {
             const defaultTracks = [
                 {
@@ -3271,14 +4270,14 @@
             }
         }
         
-        // ==================== GAME FUNCTIONS ====================
+        // Load Games
         function loadGames() {
             games = db.getGames();
             
             if (games.length === 0) {
-                emptyState.style.display = 'block';
+                emptyStateGames.style.display = 'block';
                 gamesGrid.innerHTML = '';
-                emptyState.innerHTML = `
+                emptyStateGames.innerHTML = `
                     <i class="fas fa-gamepad"></i>
                     <h3>No Games Added Yet</h3>
                     <p>Login as admin to add games</p>
@@ -3286,19 +4285,20 @@
                 return;
             }
             
-            emptyState.style.display = 'none';
+            emptyStateGames.style.display = 'none';
             renderGames();
         }
         
+        // Render Games
         function renderGames() {
             gamesGrid.innerHTML = '';
             
-            const gamesToDisplay = isSearching ? db.searchGames(currentSearchQuery) : games;
+            const gamesToDisplay = isSearching && currentTab === 'games' ? db.searchGames(currentSearchQuery) : games;
             
             if (gamesToDisplay.length === 0) {
-                emptyState.style.display = 'block';
+                emptyStateGames.style.display = 'block';
                 gamesGrid.innerHTML = '';
-                emptyState.innerHTML = `
+                emptyStateGames.innerHTML = `
                     <i class="fas fa-gamepad"></i>
                     <h3>No Games Found</h3>
                     <p>Try a different search or clear your search</p>
@@ -3306,7 +4306,7 @@
                 return;
             }
             
-            emptyState.style.display = 'none';
+            emptyStateGames.style.display = 'none';
             
             const isAuthenticated = authSystem.isAuthenticated();
             
@@ -3352,6 +4352,7 @@
             });
         }
         
+        // Share individual game
         function shareGame(id) {
             const game = games.find(g => g.id === id);
             if (!game) return;
@@ -3377,13 +4378,14 @@
         
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
-                showToast('Link copied to clipboard!');
+                showToast('Game link copied to clipboard!');
             }).catch(err => {
                 console.error('Failed to copy: ', err);
                 showToast('Failed to copy link', 'error');
             });
         }
         
+        // Game View/Details Modal
         function viewGameDetails(id) {
             const game = games.find(g => g.id === id);
             if (!game) return;
@@ -3492,6 +4494,13 @@
             return url.includes('youtube.com') || url.includes('youtu.be');
         }
         
+        function extractYouTubeId(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : null;
+        }
+        
+        // Add/Edit Game
         function resetForm() {
             currentGameId = null;
             formTitle.textContent = 'Add New Game';
@@ -3559,6 +4568,7 @@
             showToast(`Game "${gameData.name}" saved successfully!`);
         }
         
+        // Delete Game
         function deleteGame(id) {
             if (!authSystem.checkAccess()) return;
             
@@ -3575,6 +4585,7 @@
             updateDatabaseStatus();
         }
         
+        // Media Management
         function addMediaItem() {
             const url = mediaUrlInput.value.trim();
             if (!url) {
@@ -3633,7 +4644,7 @@
                     `;
                 } else {
                     mediaItem.innerHTML = `
-                        <img src="${url}" alt="Media ${index + 1}" onerror="this.parentElement.innerHTML='<i class=\\'fas fa-image\\' style=\\'font-size: 2rem; color: #777;\\'></i><span class=\\'media-type-badge\\'>Image</span>${isAuthenticated ? '<button onclick=\\'removeMediaItem(' + index + ')\' style=\\'position: absolute; top: 5px; left: 5px; background: rgba(0,0,0,0.7); color: white; border: none; width: 20px; height: 20px; cursor: pointer; border-radius: 0;\'>X</button>' : ''}'">
+                        <img src="${url}" alt="Media ${index + 1}" onerror="this.parentElement.innerHTML='<i class=\'fas fa-image\' style=\'font-size: 2rem; color: #777;\'></i><span class=\'media-type-badge\'>Image</span>${isAuthenticated ? '<button onclick=\'removeMediaItem(' + index + ')\' style=\'position: absolute; top: 5px; left: 5px; background: rgba(0,0,0,0.7); color: white; border: none; width: 20px; height: 20px; cursor: pointer; border-radius: 0;\'>X</button>' : ''}'">
                         <span class="media-type-badge">Image</span>
                         ${isAuthenticated ? 
                             `<button onclick="removeMediaItem(${index})" style="position: absolute; top: 5px; left: 5px; background: rgba(0,0,0,0.7); color: white; border: none; width: 20px; height: 20px; cursor: pointer; border-radius: 0;">X</button>` 
@@ -3645,6 +4656,7 @@
             });
         }
         
+        // Download Links Management
         function addDownloadLink() {
             const linkId = Date.now();
             downloadLinkItems.push({ id: linkId, name: '', url: '' });
@@ -3691,6 +4703,7 @@
             });
         }
         
+        // Add sample games if empty
         function loadSampleGames() {
             if (db.getGames().length === 0) {
                 const sampleGames = [
@@ -3736,166 +4749,34 @@
             }
         }
         
-        // ==================== EVENT LISTENERS ====================
-        function setupEventListeners() {
-            // Page navigation
-            gamesPageBtn.addEventListener('click', () => showPage('games'));
-            youtubePageBtn.addEventListener('click', () => showPage('youtube'));
-            
-            // YouTube functionality
-            youtubeBtn.addEventListener('click', openYouTubeModal);
-            closeYoutubeModal.addEventListener('click', closeYouTubeModal);
-            youtubeModal.addEventListener('click', function(e) {
-                if (e.target === youtubeModal) {
-                    closeYouTubeModal();
-                }
-            });
-            addYoutubeVideoBtn.addEventListener('click', addYouTubeVideo);
-            shareYoutubeBtn.addEventListener('click', openShareModal);
-            
-            // Search functionality
-            searchBtn.addEventListener('click', () => {
-                performSearch(searchInput.value);
-            });
-            
-            searchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    performSearch(searchInput.value);
-                }
-            });
-            
-            clearSearchBtn.addEventListener('click', () => {
-                searchInput.value = '';
-                performSearch('');
-            });
-            
-            // Game form
-            addNewGameBtn.addEventListener('click', () => {
-                if (authSystem.checkAccess()) {
-                    resetForm();
-                }
-            });
-            
-            addMediaBtn.addEventListener('click', () => {
-                if (authSystem.checkAccess()) {
-                    addMediaItem();
-                }
-            });
-            
-            addMusicUrlBtn.addEventListener('click', () => {
-                if (authSystem.checkAccess()) {
-                    addMusicToPlaylist();
-                }
-            });
-            
-            addLinkBtn.addEventListener('click', () => {
-                if (authSystem.checkAccess()) {
-                    addDownloadLink();
-                }
-            });
-            
-            addMusicBtn.addEventListener('click', () => {
-                if (authSystem.checkAccess()) {
-                    musicUrlInput.scrollIntoView({behavior: 'smooth'});
-                }
-            });
-            
-            gameForm.addEventListener('submit', saveGame);
-            cancelBtn.addEventListener('click', resetForm);
-            
-            // Database Manager
-            dbManagerBtn.addEventListener('click', openDbModal);
-            closeDbModal.addEventListener('click', closeDbModalFunc);
-            dbModal.addEventListener('click', function(e) {
-                if (e.target === dbModal) {
-                    closeDbModalFunc();
-                }
-            });
-            
-            backupDbBtn.addEventListener('click', createBackup);
-            restoreDbBtn.addEventListener('click', () => restoreFile.click());
-            restoreFile.addEventListener('change', restoreBackup);
-            clearDbBtn.addEventListener('click', clearDatabase);
-            
-            // Share functionality
-            shareSiteBtn.addEventListener('click', openShareModal);
-            closeShareModal.addEventListener('click', closeShareModalFunc);
-            shareModal.addEventListener('click', function(e) {
-                if (e.target === shareModal) {
-                    closeShareModalFunc();
-                }
-            });
-            
-            copyUrlBtn.addEventListener('click', copySiteUrl);
-            shareWhatsApp.addEventListener('click', shareViaWhatsApp);
-            shareTelegram.addEventListener('click', shareViaTelegram);
-            shareEmail.addEventListener('click', shareViaEmail);
-            copyLink.addEventListener('click', copySiteUrl);
-            downloadSite.addEventListener('click', downloadSiteFiles);
-            showQR.addEventListener('click', generateQRCode);
-            exportGamesBtn.addEventListener('click', exportGamesData);
-            importGamesBtn.addEventListener('click', () => importFile.click());
-            importFile.addEventListener('change', importGamesData);
-            
-            // Music player controls
-            playPauseBtn.addEventListener('click', togglePlayPause);
-            prevBtn.addEventListener('click', playPrevious);
-            nextBtn.addEventListener('click', playNext);
-            
-            // Modal controls
-            closeModal.addEventListener('click', closeMediaModal);
-            mediaModal.addEventListener('click', function(e) {
-                if (e.target === mediaModal) {
-                    closeMediaModal();
-                }
-            });
-            
-            // Progress bar click
-            nowPlaying.addEventListener('click', function(e) {
-                if (e.target.classList.contains('progress-container')) {
-                    const rect = e.target.getBoundingClientRect();
-                    const clickPosition = (e.clientX - rect.left) / rect.width;
-                    backgroundMusic.currentTime = clickPosition * backgroundMusic.duration;
-                }
-            });
-            
-            // Music events
-            backgroundMusic.addEventListener('timeupdate', updateProgressBar);
-            backgroundMusic.addEventListener('ended', playNext);
-            
-            // Auto-save for media items
-            mediaUrlInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    if (authSystem.checkAccess()) {
-                        addMediaItem();
+        // Add sample YouTube videos if empty and admin
+        function loadSampleYouTubeVideos() {
+            if (db.getYouTubeVideos().length === 0 && authSystem.isAuthenticated()) {
+                const sampleVideos = [
+                    {
+                        id: 'vid_1',
+                        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                        videoId: 'dQw4w9WgXcQ',
+                        title: 'Never Gonna Give You Up',
+                        thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+                        embedUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+                        timestamp: new Date().toISOString()
+                    },
+                    {
+                        id: 'vid_2',
+                        url: 'https://www.youtube.com/watch?v=9bZkp7q19f0',
+                        videoId: '9bZkp7q19f0',
+                        title: 'Gangnam Style',
+                        thumbnail: 'https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg',
+                        embedUrl: 'https://www.youtube.com/embed/9bZkp7q19f0',
+                        timestamp: new Date().toISOString()
                     }
-                }
-            });
-            
-            musicUrlInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    if (authSystem.checkAccess()) {
-                        addMusicToPlaylist();
-                    }
-                }
-            });
-            
-            // YouTube URL enter key
-            youtubeUrlInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    addYouTubeVideo();
-                }
-            });
-            
-            youtubeTitleInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    addYouTubeVideo();
-                }
-            });
+                ];
+                
+                sampleVideos.forEach(video => db.addYouTubeVideo(video));
+                loadYouTubeVideos();
+                updateDatabaseStatus();
+            }
         }
     </script>
 </body>
